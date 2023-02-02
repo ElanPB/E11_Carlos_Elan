@@ -10,7 +10,7 @@ bme680.sea_level_pressure = 1013.25
 
 i = 0
 
-df = pd.DataFrame(columns=['Local Time', 'Unix Time', 'Temperature', 'Gas', 'Humiditiy', 'Pressure', 'Altitude']
+df = pd.DataFrame(columns=['Local Time', 'Unix Time', 'Temperature', 'Gas', 'Humiditiy', 'Pressure', 'Altitude'])
 
 while i < 100:
 
