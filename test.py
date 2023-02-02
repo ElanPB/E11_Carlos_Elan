@@ -10,8 +10,8 @@ bme680.sea_level_pressure = 1013.25
 i = 0
 
 while i < 100:
-	print("\nLocal Time: " + time.localtime())
-	print("Unix Time: " + time.time())
+	print("\nLocal Time: " + time.asctime(time.localtime()))
+	print("Unix Time: ", time.time())
 	print("Temperature: %0.1f C" % bme680.temperature)
 	print("Gas: %d ohm" % bme680.gas)
 	print("Humidity: %0.1f %%" % bme680.relative_humidity)
