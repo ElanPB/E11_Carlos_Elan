@@ -30,7 +30,7 @@ while i < 100:
     print("Pressure: %0.3f hPa" % info.get('Pressure'))
     print("Altitude = %0.2f meters" % info.get('Altitude'))
     
-	df.append(info, ignore_index = True)
+	df = df.append(info, ignore_index = True)
 
 	time.sleep(2)
     
