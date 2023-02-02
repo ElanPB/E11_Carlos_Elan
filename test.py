@@ -33,5 +33,7 @@ while i < 100:
 	df.append(info, ignore_index = True)
 
 	time.sleep(2)
+    
+    i += 1
 
 df.to_csv('file_name.csv')
