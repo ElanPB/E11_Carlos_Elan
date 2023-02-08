@@ -4,18 +4,18 @@ import busio
 from digitalio import DigitalInOut, Direction, Pull
 from adafruit_pm25.i2c import PM25_I2C
 
-#reset_pin = None
-reset_pin = DigitalInOut(board.G0)
-reset_pin.direction = Direction.OUTPUT
-reset_pin.value = False
+reset_pin = None
+#reset_pin = DigitalInOut(board.G0)
+#reset_pin.direction = Direction.OUTPUT
+#reset_pin.value = False
 
 
 #Using Raspberry Pi
 import serial
 uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
 
-i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)
-pm25 = PM25_I2C(i2c, reset_pin)
+from adafruit_pm25.uart import PM25_UART
+pm25 = PM25_UART(uart, reset_pin)
 
 print("Found PM2.5 sensor, reading data...")
 
