@@ -35,5 +35,5 @@ while i < 100:
     time.sleep(2)
     
     i += 1
-
-df.to_csv('file_name.csv')
+date = df.at['Local Time', 0]
+df.to_csv(date + '.csv')
