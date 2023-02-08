@@ -9,6 +9,7 @@ bme680.sea_level_pressure = 1013.25
 
 i = 0
 
+file = open('CSV_FILES/' + time.strftime("%Y%m%d_%H:%M:%S", time.localtime()) + '.csv', 'w')
 data = []
 header = ['Local Time', 'Unix Time', 'Temperature', 'Gas', 'Humidity', 'Pressure', 'Altitude']
 
@@ -30,8 +31,7 @@ while i < 100:
     time.sleep(2)
     
     i += 1
-date = data[0][0]
-file = open(date + '.csv', 'w')
+
 file.write(','.join(header) + ',\n')
 for i in data:
     line = ''
