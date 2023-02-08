@@ -64,5 +64,8 @@ while (i < 30):
 
 file.write(','.join(header) + ',\n')
 for i in data:
-    file.write(','.join(i) + ',\n')
+    line = ''
+    for x in i:
+        line += str(x) + ','
+    file.write(line + '\n')
 file.close()
