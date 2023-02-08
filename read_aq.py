@@ -19,7 +19,7 @@ pm25 = PM25_UART(uart, reset_pin)
 
 print("Found PM2.5 sensor, reading data...")
 
-file = open(time.strftime("%Y%m%d_%H:%M:%S", time.localtime()) + '.csv', 'w')
+file = open('CSV_FILES/' + time.strftime("%Y%m%d_%H:%M:%S", time.localtime()) + '.csv', 'w')
 data = []
 header = ['Local Time', 'Unix Time', 'PM1.0', 'PM2.5', 'PM10']
 
