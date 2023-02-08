@@ -19,6 +19,9 @@ pm25 = PM25_UART(uart, reset_pin)
 
 print("Found PM2.5 sensor, reading data...")
 
+data = []
+header = ['Local Time', 'Unix Time', 'PM1.0', 'PM2.5', 'PM10']
+
 i = 0
 while (i < 30):
     time.sleep(1)
@@ -30,12 +33,14 @@ while (i < 30):
         print("Unable to read from sensor, retrying...")
         continue
 
+    info = [time.asctime(time.localtime()), time.time(), aqdata["pm10 standard"], aqdata["pm25 standard"], aqdata["pm100 standard"]]
+
     print()
     print("Concentration Units (standard)")
     print("---------------------------------------")
     print(
         "PM 1.0: %d\tPM2.5: %d\tPM10: %d"
-        % (aqdata["pm10 standard"], aqdata["pm25 standard"], aqdata["pm100 standard"])
+        % (info[0], info[1], info[2])
     )
     print("Concentration Units (environmental)")
     print("---------------------------------------")
@@ -52,4 +57,13 @@ while (i < 30):
     print("Particles > 10 um / 0.1L air:", aqdata["particles 100um"])
     print("---------------------------------------")
 
+    data.append(info)
+
     i += 1
+
+date = data[0][0]
+file = open('aq_' + date + '.csv', 'w')
+file.write(','.join(header) + ',\n')
+for i in data:
+    file.write(','.join(i) + ',\n')
+file.close()

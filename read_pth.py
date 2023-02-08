@@ -34,5 +34,5 @@ date = data[0][0]
 file = open(date + '.csv', 'w')
 file.write(','.join(header) + ',\n')
 for i in data:
-    file.write(','.join(header) + ',\n')
+    file.write(','.join(i) + ',\n')
 file.close()
