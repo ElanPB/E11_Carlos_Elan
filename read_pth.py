@@ -14,7 +14,7 @@ header = ['Local Time', 'Unix Time', 'Temperature', 'Gas', 'Humidity', 'Pressure
 
 while i < 100:
 
-    info = [time.asctime(time.localtime()), time.time(), bme680.temperature\
+    info = [time.asctime(time.localtime()), time.time(), bme680.temperature,\
         bme680.gas, bme680.relative_humidity, bme680.pressure, bme680.altitude]
             
     print("\nLocal Time: " + info[0])
