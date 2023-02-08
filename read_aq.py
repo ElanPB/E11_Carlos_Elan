@@ -4,10 +4,10 @@ import busio
 from digitalio import DigitalInOut, Direction, Pull
 from adafruit_pm25.i2c import PM25_I2C
 
-reset_pin = None
-#reset_pin = DigitalInOut(board.G0)
-#reset_pin.direction = Direction.OUTPUT
-#reset_pin.value = False
+#reset_pin = None
+reset_pin = DigitalInOut(board.G0)
+reset_pin.direction = Direction.OUTPUT
+reset_pin.value = False
 
 
 #Using Raspberry Pi
