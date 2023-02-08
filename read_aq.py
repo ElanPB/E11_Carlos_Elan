@@ -41,7 +41,7 @@ while (i < 30):
     print("---------------------------------------")
     print(
         "PM 1.0: %d\tPM2.5: %d\tPM10: %d"
-        % (info[0], info[1], info[2])
+        % (info[2], info[3], info[4])
     )
     print("Concentration Units (environmental)")
     print("---------------------------------------")
