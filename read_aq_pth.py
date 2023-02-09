@@ -1,17 +1,17 @@
 import time #AQ, PTH
 import board #AQ, PTH
 import busio #AQ
+import serial
 import adafruit_bme680 #PTH
 from digitalio import DigitalInOut, Direction, Pull #AQ
 from adafruit_pm25.i2c import PM25_I2C #AQ
+from adafruit_pm25.uart import PM25_UART
 
 #AQ sensor input
 reset_pin = None
 
-import serial
 uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
 
-from adafruit_pm25.uart import PM25_UART
 pm25 = PM25_UART(uart, reset_pin)
 
 #PTH sensor input
@@ -40,6 +40,19 @@ while (i < runtime):
         bme680.temperature, bme680.gas, bme680.relative_humidity, bme680.pressure, bme680.altitude]
 
     #Print AQ and PTH sensor outputs here
+    print()
+    print("Concentration Units (standard)")
+    print("---------------------------------------")
+    print(
+        "PM 1.0: %d\tPM2.5: %d\tPM10: %d"
+        % (info[2], info[3], info[4])
+    )
+    print("---------------------------------------")
+    print("Temperature: %0.1f C" % info[5])
+    print("Gas: %d ohm" % info[6])
+    print("Humidity: %0.1f %%" % info[7])
+    print("Pressure: %0.3f hPa" % info[8])
+    print("Altitude = %0.2f meters" % info[9])
 
     data.append(info)
 
