@@ -22,7 +22,7 @@ bme680.sea_level_pressure = 1013.25
 
 runtime = 30 #seconds
 
-file = open('CSV_FILES/' + time.strftime("%Y%m%d_%H:%M:%S", time.localtime()) + '_aq_pth.csv', 'w')
+file = open('CSV_FILES/' + time.strftime("%Y%m%d-%H%M%S", time.localtime()) + '_aq_pth.csv', 'w')
 header = ['Local Time', 'Unix Time', 'PM1.0', 'PM2.5', 'PM10', \
     'Temperature', 'Gas', 'Humidity', 'Pressure', 'Altitude']
 data = []
