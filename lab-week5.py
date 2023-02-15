@@ -2,7 +2,7 @@ import sys
 import random
 import time
 
-runtime = 30 #s
+runtime = int(sys.argv[1]) #s, input from terminal
 i = 0
 
 while i < runtime:
