@@ -1,4 +1,5 @@
 import time #AQ, PTH
+import sys
 import board #AQ, PTH
 import busio #AQ
 import serial
@@ -20,7 +21,7 @@ bme680 = adafruit_bme680.Adafruit_BME680_I2C(i2c)
 
 bme680.sea_level_pressure = 1013.25
 
-runtime = 30 #seconds
+runtime = int(sys.argv[1]) #seconds
 
 file = open('CSV_FILES/' + time.strftime("%Y%m%d-%H%M%S", time.localtime()) + '_aq_pth.csv', 'w')
 header = ['Local Time', 'Unix Time', 'PM1.0', 'PM2.5', 'PM10', \
