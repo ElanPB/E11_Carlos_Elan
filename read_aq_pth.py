@@ -11,7 +11,7 @@ from adafruit_pm25.uart import PM25_UART
 #AQ sensor input
 reset_pin = None
 
-uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
+uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.95)
 
 pm25 = PM25_UART(uart, reset_pin)
 

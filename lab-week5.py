@@ -8,7 +8,7 @@ i = 0
 while i < runtime:
 
     info = (time.time(), \
-        )
+        random.random())
     print(info)
 
     time.sleep(1)
