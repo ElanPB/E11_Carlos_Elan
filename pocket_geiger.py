@@ -13,7 +13,7 @@ GPIO.add_event_detect(pin_num, GPIO.FALLING)
 
 detected_times = []
 
-while (time.time() - start_time > runtime):
+while (time.time() - start_time < runtime):
     if GPIO.event_detected(pin_num):
         curr_time = time.time()
         detected_times.append(curr_time)
