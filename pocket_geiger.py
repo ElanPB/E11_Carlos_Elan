@@ -27,7 +27,9 @@ while ((time.time() - start_time) < runtime_minutes * 60):
     last_run = (time.time() - start_time)%60
     
     # Check for an event
-    if GPIO.event_detected(pin_num):
+    time_out = int((60 - last_run)*1000)
+    GPIO.wait_for_edge(pin_num, GPIO.FALLING, timeout = time_out):
+    if channel not None:
         count += 1
         time_stamps.append(time.time())
         print("Count at time: {:}".format(time_stamps[-1]))
