@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import time
 
 start_time = time.time()
-runtime = 300
+runtime_minutes = 5
 
 pin_num = 23
 
@@ -11,12 +11,18 @@ GPIO.setup(pin_num, GPIO.IN)
 GPIO.add_event_detect(pin_num, GPIO.FALLING)
 
 
-detected_times = []
+cpm = []
+time_stamps = []
+count = 0
 
-while (time.time() - start_time < runtime):
+while (time.time() - start_time < runtime * 60):
+    if ((time.time() - start_time)%60 < 0.5):
+        cpm.append(count)
+        print("There were {:} counts in the last minute.".format(count))
+        count = 0
     if GPIO.event_detected(pin_num):
-        curr_time = time.time()
-        detected_times.append(curr_time)
-        print("Count at time: {:}".format(curr_time))
+        count += 1
+        time_stamps.append(time.time())
+        print("Count at time: {:}".format(time_stamps[-1]))
 
-print("Over the span of 300 seconds, we measured {:} counts.".format(len(detected_times)))
+print("Over the span of {} minutes, we measured {:} counts.".format(runtime_minutes, len(detected_times)))
