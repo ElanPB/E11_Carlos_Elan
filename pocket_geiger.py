@@ -6,6 +6,7 @@ runtime = 300
 
 pin_num = 23
 
+GPIO.setmode(GPIO.BCM)
 GPIO.add_event_detect(pin_num, GPIO.FALLING)
 
 detected_times = []
