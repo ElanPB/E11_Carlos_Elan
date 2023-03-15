@@ -22,6 +22,7 @@ while ((time.time() - start_time) < runtime_minutes * 60):
         print("There were {:} counts in the last minute.".format(count))
         count = 0
     last_run = (time.time() - start_time)%60
+    print(GPIO.event_detected(pin_num))
     if GPIO.event_detected(pin_num):
         count += 1
         time_stamps.append(time.time())
@@ -30,4 +31,4 @@ while ((time.time() - start_time) < runtime_minutes * 60):
 if(len(cpm) != runtime_minutes):
     cpm.append(count)
     
-print("Over the span of {} minutes, we measured {:} counts.".format(runtime_minutes, len(detected_times)))
+print("Over the span of {} minutes, we measured {:} counts.".format(runtime_minutes, len(time_stamps)))
