@@ -14,6 +14,6 @@ while (time.time() - start_time > runtime):
     if GPIO.event_detected(pin_num):
         curr_time = time.time()
         detected_times.append(curr_time)
-        print("Count at time: {:}".format(curr_time)
+        print("Count at time: {:}".format(curr_time))
 
 print("Over the span of 300 seconds, we measured {:} counts.".format(len(detected_times)))
