@@ -4,7 +4,7 @@ import time
 start_time = time.time()
 runtime_minutes = 5
 
-pin_num = 23
+pin_num = 24
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_num, GPIO.IN)
