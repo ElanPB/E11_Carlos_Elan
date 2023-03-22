@@ -8,7 +8,7 @@ time_stamps = []
 count = 0
 
 GPIO.setmode(GPIO.BCM)
-pin_num = 23
+pin_num = 6
 
 def my_callback(pin_num):
     global time_stamps
