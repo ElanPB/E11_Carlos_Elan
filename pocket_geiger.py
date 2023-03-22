@@ -5,7 +5,7 @@ file = open('CSV_FILES/' + time.strftime("%Y%m%d-%H%M%S", time.localtime()) + '_
 file.write('Time Stamps\n')
 
 start_time = time.time()
-runtime = 5 * 60 #s
+runtime = 2 * 60 #s
 cpm = []
 time_stamps = []
 count = 0
@@ -23,11 +23,11 @@ GPIO.setup(pin_num, GPIO.IN)
 GPIO.add_event_detect(pin_num, GPIO.FALLING, callback = my_callback)
 
 while ((time.time() - start_time) < runtime):
-    time.sleep(60)
+    time.sleep(10)
     cpm.append(count)
     count = 0
 
-for i in time_stamps:
+for i in cpm:
     file.write(str(i) + '\n')
 
 file.close()
