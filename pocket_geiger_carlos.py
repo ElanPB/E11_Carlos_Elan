@@ -18,7 +18,7 @@ def my_callback(pin_num):
     print("Event detected at" + str(time.time()))
 
 GPIO.setup(pin_num, GPIO.IN)
-GPIO.add_event_detect(pin_num, GPIO.FALLING, callback = my_callback(pin_num))
+GPIO.add_event_detect(pin_num, GPIO.FALLING, callback = my_callback)
 
 while ((time.time() - start_time) < runtime):
     time.sleep(60)
