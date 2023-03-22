@@ -1,6 +1,9 @@
 import RPi.GPIO as GPIO
 import time
 
+file = open('CSV_FILES/' + time.strftime("%Y%m%d-%H%M%S", time.localtime()) + '_pocket_geiger.csv', 'w')
+file.write('Time Stamps\n')
+
 start_time = time.time()
 runtime = 5 * 60 #s
 cpm = []
@@ -11,11 +14,10 @@ GPIO.setmode(GPIO.BCM)
 pin_num = 6
 
 def my_callback(pin_num):
-    global time_stamps
+    global time_stamps, count
     time_stamps.append(time.time())
-    global count
     count += 1
-    print("Event detected at" + str(time.time()))
+    print("Event detected at " + str(time.time()))
 
 GPIO.setup(pin_num, GPIO.IN)
 GPIO.add_event_detect(pin_num, GPIO.FALLING, callback = my_callback)
@@ -24,5 +26,10 @@ while ((time.time() - start_time) < runtime):
     time.sleep(60)
     cpm.append(count)
     count = 0
+
+for i in time_stamps:
+    file.write(str(i) + '\n')
+
+file.close()
 
 print("Over the span of %d seconds, we measured %d counts." %(runtime, len(time_stamps)))
