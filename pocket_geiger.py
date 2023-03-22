@@ -4,7 +4,7 @@ import time
 start_time = time.time()
 runtime_minutes = 5
 
-pin_num = 24
+pin_num = 6
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(pin_num, GPIO.IN)
@@ -22,7 +22,8 @@ while ((time.time() - start_time) < runtime_minutes * 60):
     last_run = (time.time() - start_time)%60
     
     # Check for an event
-    time_out = int((60 - last_run)*1000)
+    time_out = int((60 - last_run))*1000
+    print(last_run, time_out)
     channel = GPIO.wait_for_edge(pin_num, GPIO.FALLING, timeout = time_out)
     if (channel is None):
         cpm.append(count)
