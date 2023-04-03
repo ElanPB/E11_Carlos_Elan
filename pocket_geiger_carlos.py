@@ -15,7 +15,7 @@ def my_callback(pin_num):
     time_stamps.append(time.time())
     global count
     count += 1
-    print("Event detected at" + str(time.time()))
+    #print("Event detected at" + str(time.time()))
 
 GPIO.setup(pin_num, GPIO.IN)
 GPIO.add_event_detect(pin_num, GPIO.FALLING, callback = my_callback)
