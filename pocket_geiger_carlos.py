@@ -24,5 +24,3 @@ while ((time.time() - start_time) < runtime):
     time.sleep(60)
     cpm.append(count)
     count = 0
-
-print("Over the span of %d seconds, we measured %d counts." %(runtime, len(time_stamps)))

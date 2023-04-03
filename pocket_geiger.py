@@ -1,40 +1,35 @@
 import RPi.GPIO as GPIO
 import time
 
+file = open('CSV_FILES/' + time.strftime("%Y%m%d-%H%M%S", time.localtime()) + '_pocket_geiger.csv', 'w')
+file.write('Time Stamps\n')
+
 start_time = time.time()
-runtime_minutes = 5
-
-pin_num = 24
-
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(pin_num, GPIO.IN)
-GPIO.add_event_detect(pin_num, GPIO.FALLING)
-
-
+runtime = 2 * 60 #s
 cpm = []
 time_stamps = []
 count = 0
-last_run = 0
 
-while ((time.time() - start_time) < runtime_minutes * 60):
+GPIO.setmode(GPIO.BCM)
+pin_num = 6
 
-    # Set time for the run of this loop
-    last_run = (time.time() - start_time)%60
-    
-    # Check for an event
-    time_out = int((60 - last_run)*1000)
-    channel = GPIO.wait_for_edge(pin_num, GPIO.FALLING, timeout = time_out)
-    if (channel is None):
-        cpm.append(count)
-        print("There were {:} counts in the last minute.".format(count))
-        count = 0
-    else:
-        time_stamps.append(time.time())
-        print("Count at time: {:}".format(time_stamps[-1]))
-        count += 1
-        
-# Make sure we have actually recorded all the data, if it did not register the final minute ending, append leftover data
-if(len(cpm) != runtime_minutes):
+def my_callback(pin_num):
+    global time_stamps, count
+    time_stamps.append(time.time())
+    count += 1
+    print("Event detected at " + str(time.time()))
+
+GPIO.setup(pin_num, GPIO.IN)
+GPIO.add_event_detect(pin_num, GPIO.FALLING, callback = my_callback)
+
+while ((time.time() - start_time) < runtime):
+    time.sleep(10)
     cpm.append(count)
-    
-print("Over the span of {} minutes, we measured {:} counts.".format(runtime_minutes, len(time_stamps)))
+    count = 0
+
+for i in cpm:
+    file.write(str(i) + '\n')
+
+file.close()
+
+print("Over the span of %d seconds, we measured %d counts." %(runtime, len(time_stamps)))
